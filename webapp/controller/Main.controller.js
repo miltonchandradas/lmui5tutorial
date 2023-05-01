@@ -2,12 +2,13 @@ sap.ui.define(
   [
     "sap/ui/core/mvc/Controller",
     "com/sap/lmui5tutorial/utils/filterUtils",
+    "com/sap/lmui5tutorial/utils/odataUtils",
     "sap/ui/model/json/JSONModel",
   ],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
    */
-  function (Controller, filterUtils, JSONModel) {
+  function (Controller, filterUtils, odataUtils, JSONModel) {
     "use strict";
 
     return Controller.extend("com.sap.lmui5tutorial.controller.Main", {
@@ -36,11 +37,17 @@ sap.ui.define(
         this._filterArray = filterUtils.getFilterArray(this);
       },
 
-      onBeforeRebindTable: function (oEvent) {
+      onBeforeRebindTable: async function (oEvent) {
         let bindingParams = oEvent.getParameter("bindingParams");
         bindingParams.filters = filterUtils.getFilterArray(this);
 
-        this._mainModel.refresh();
+        let data = await odataUtils.read(
+          "Products",
+          bindingParams.filters,
+          this._viewModel,
+          this._mainModel
+        );
+        this._northwindModel.setData({ Products: data?.results });
       },
 
       /***********************************************************************************************/

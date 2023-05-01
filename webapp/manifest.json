@@ -77,8 +77,7 @@
         }
       },
       "northwindModel": {
-        "type": "sap.ui.model.json.JSONModel",
-        "uri": "./model/Products.json"
+        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {
