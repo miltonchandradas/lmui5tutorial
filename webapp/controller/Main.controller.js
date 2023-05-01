@@ -23,6 +23,8 @@ sap.ui.define(
         this._viewModel = this.getView().getModel("viewModel");
 
         this._mainModel = this.getOwnerComponent().getModel();
+        this._northwindModel =
+          this.getOwnerComponent().getModel("northwindModel");
         this._filterArray = filterUtils.getFilterArray(this);
       },
 
@@ -46,7 +48,13 @@ sap.ui.define(
       /***********************************************************************************************/
 
       onSubmit: function () {
-        this._mainModel.submitChanges();
+        console.log(
+          "No need to do anything...  JSON Model is set for Two way binding by default !!"
+        );
+        let products = this._northwindModel.getData();
+        console.log(
+          `Discontinued flag for Product ID - ${products.Products[0].ProductID} is set to ${products.Products[0].Discontinued}`
+        );
       },
     });
   }
