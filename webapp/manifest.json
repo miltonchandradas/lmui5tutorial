@@ -75,6 +75,10 @@
         "settings": {
           "defaultBindingMode": "TwoWay"
         }
+      },
+      "northwindModel": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "./model/Products.json"
       }
     },
     "resources": {
