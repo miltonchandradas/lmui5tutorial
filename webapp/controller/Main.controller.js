@@ -55,13 +55,26 @@ sap.ui.define(
       /***********************************************************************************************/
 
       onSubmit: function () {
-        console.log(
-          "No need to do anything...  JSON Model is set for Two way binding by default !!"
-        );
         let products = this._northwindModel.getData();
-        console.log(
-          `Discontinued flag for Product ID - ${products.Products[0].ProductID} is set to ${products.Products[0].Discontinued}`
-        );
+        products.Products.forEach(async (product) => {
+          if (product.dirty) {
+            await odataUtils.updateBackend(
+              `/Products(${product.ProductID})`,
+              { Discontinued: product.Discontinued },
+              this._viewModel,
+              this._mainModel
+            );
+          }
+        });
+      },
+
+      onDiscontinuedSelected: function (oEvent) {
+        let bindingContext = oEvent
+          .getSource()
+          .getBindingContext("northwindModel");
+        let sPath = bindingContext.sPath;
+
+        this._northwindModel.setProperty(sPath + "/dirty", true);
       },
     });
   }
