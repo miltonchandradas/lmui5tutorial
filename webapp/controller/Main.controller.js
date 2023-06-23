@@ -47,7 +47,13 @@ sap.ui.define(
           this._viewModel,
           this._mainModel
         );
-        this._northwindModel.setData({ Products: data?.results });
+
+        this._northwindModel.setProperty("/Products", data?.results);
+
+        console.log(
+          "Products: ",
+          this._northwindModel.getProperty("/Products")
+        );
       },
 
       /***********************************************************************************************/

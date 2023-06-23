@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core"
 	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:smartVariantManagement="sap.ui.comp.smartvariants"
 	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:tnt="sap.tnt">
-	<smartTable:SmartTable id="masterSmartTable" tableType="ResponsiveTable" entitySet="Products"
+	<smartTable:SmartTable id="masterSmartTable" tableType="ResponsiveTable" entitySet="Products2"
 		requestAtLeastFields="ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued"
 		placeToolbarInTable="true" header="Products" beforeRebindTable=".onBeforeRebindTable" tableBindingPath="northwindModel>/Products"  smartFilterId="smartFilterBar"
 		customData:p13nDialogSettings='{filter:{visible:false}}' enableAutoBinding="true">
